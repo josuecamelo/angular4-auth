@@ -7,11 +7,13 @@ import routing from "./app.routing";
 import {HttpClientModule} from "@angular/common/http";
 import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
+        ProductListComponent,
     ],
     imports: [
         BrowserModule,
