@@ -6,6 +6,7 @@ import {FormsModule} from "@angular/forms";
 import routing from "./app.routing";
 import {HttpClientModule} from "@angular/common/http";
 import {LocalStorageService} from "./services/local-storage.service";
+import {JwtTokenService} from "./services/jwt-token.service";
 
 @NgModule({
     declarations: [
@@ -18,7 +19,10 @@ import {LocalStorageService} from "./services/local-storage.service";
         routing, //importando minhas rotas do arquivo app.routing.ts,
         HttpClientModule // lib para fazer requisições get, post, etc..
     ],
-    providers: [LocalStorageService],
+    providers: [
+        LocalStorageService,
+        JwtTokenService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
