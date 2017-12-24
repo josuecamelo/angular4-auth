@@ -1,9 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
+import routing from "./app.routing";
 
 @NgModule({
     declarations: [
@@ -12,7 +12,8 @@ import {FormsModule} from "@angular/forms";
     ],
     imports: [
         BrowserModule,
-        FormsModule//necessário adicionar para trabalhar com formulario ex: uso de ngModel
+        FormsModule,//necessário adicionar para trabalhar com formulario ex: uso de ngModel
+        routing //importando minhas rotas do arquivo app.routing.ts
     ],
     providers: [],
     bootstrap: [AppComponent]
