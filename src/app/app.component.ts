@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Minha App Angular 4.3.6';
+  title = 'Exemplo App com Autenticação em API';
 }
