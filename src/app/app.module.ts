@@ -9,6 +9,7 @@ import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import { ProductListComponent } from './products/product-list/product-list.component';
 import {MyHttpInterceptor} from "./httpinterceptor";
+import {AuthGuardRouterService} from "./services/auth-guard-router.service";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MyHttpInterceptor} from "./httpinterceptor";
             provide: HTTP_INTERCEPTORS,
             useClass: MyHttpInterceptor,
             multi: true
-        }
+        },
+        AuthGuardRouterService
     ],
     bootstrap: [AppComponent]
 })
