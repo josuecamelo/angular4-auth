@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    /*let headers = new HttpHeaders({
+    let headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken.token}`,
       'Content-Type': 'application/json'
     });
@@ -30,13 +30,13 @@ export class ProductListComponent implements OnInit {
         .get('http://localhost:8000/api/products', {headers: headers})
         .subscribe(
             data => this.products = data
-        );*/
+        );
 
-    this.http.get("https://jsonplaceholder.typicode.com/users").subscribe(
+    /*this.http.get("https://jsonplaceholder.typicode.com/users").subscribe(
         success => {
           console.log("Successfully Completed");
           console.log(success);
         }
-    );
+    );*/
   }
 }
