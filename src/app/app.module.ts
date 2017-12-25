@@ -4,10 +4,11 @@ import {AppComponent} from './app.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import routing from "./app.routing";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import { ProductListComponent } from './products/product-list/product-list.component';
+
 
 @NgModule({
     declarations: [
