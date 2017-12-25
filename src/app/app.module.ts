@@ -8,6 +8,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import { ProductListComponent } from './products/product-list/product-list.component';
+import {MyHttpInterceptor} from "./httpinterceptor";
 
 
 @NgModule({
@@ -24,7 +25,12 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     ],
     providers: [
         LocalStorageService,
-        JwtTokenService
+        JwtTokenService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MyHttpInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })
