@@ -36,11 +36,11 @@ export class AuthService {
         });
   }*/
 
-  /*logout() {
+  logout() {
     this.jwtToken.token = null;
     this.check = false;
     this.localStorage.remove(USER_KEY);
-  }*/
+  }
 
   /*private getUser() {
     this.http
