@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+
+  percent: number = 0;
+  redirectAfterLogout = ['/login'];
+
+  constructor(private auth: AuthService, private router: Router) {
+  }
+
+  logout() {
+    this.auth.logout();
+    setInterval(() => {
+      this.percent += 10;
+      if (this.percent === 100) {
+        this.router.navigate(this.redirectAfterLogout);
+      }
+    }, 300);
+  }
 
   ngOnInit() {
+    this.logout();
   }
 
 }
