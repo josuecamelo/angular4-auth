@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {JwtTokenService} from "../services/jwt-token.service";
 //import {RequestOptions, Headers} from "@angular/http";
 import {Router} from "@angular/router";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   redirectAfterLogin = ['/products/list'];
 
-  constructor(private http: HttpClient, private jwtToken: JwtTokenService, private router: Router) { }
+  constructor(private http: HttpClient,
+              private jwtToken: JwtTokenService,
+              private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -25,6 +28,7 @@ export class LoginComponent implements OnInit {
   login() {
     //exemplo de uso
     this.http.post('http://localhost:8000/api/login', this.user).subscribe(data => {
+      this.auth.check = true;
       this.jwtToken.token = data['token'];
       this.router.navigate(this.redirectAfterLogin)
     });

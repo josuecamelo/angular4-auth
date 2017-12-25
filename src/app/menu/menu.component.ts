@@ -8,7 +8,7 @@ import {AuthService} from "../services/auth.service";
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }

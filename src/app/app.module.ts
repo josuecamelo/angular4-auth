@@ -12,6 +12,7 @@ import {MyHttpInterceptor} from "./httpinterceptor";
 import {AuthGuardRouterService} from "./services/auth-guard-router.service";
 import {AuthService} from "./services/auth.service";
 import { MenuComponent } from './menu/menu.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MenuComponent } from './menu/menu.component';
         LoginComponent,
         ProductListComponent,
         MenuComponent,
+        LogoutComponent,
     ],
     imports: [
         BrowserModule,
