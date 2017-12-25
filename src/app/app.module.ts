@@ -10,6 +10,7 @@ import {JwtTokenService} from "./services/jwt-token.service";
 import { ProductListComponent } from './products/product-list/product-list.component';
 import {MyHttpInterceptor} from "./httpinterceptor";
 import {AuthGuardRouterService} from "./services/auth-guard-router.service";
+import {AuthService} from "./services/auth.service";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {AuthGuardRouterService} from "./services/auth-guard-router.service";
             useClass: MyHttpInterceptor,
             multi: true
         },
-        AuthGuardRouterService
+        AuthGuardRouterService,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })
