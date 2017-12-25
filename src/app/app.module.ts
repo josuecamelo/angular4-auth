@@ -11,6 +11,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import {MyHttpInterceptor} from "./httpinterceptor";
 import {AuthGuardRouterService} from "./services/auth-guard-router.service";
 import {AuthService} from "./services/auth.service";
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {AuthService} from "./services/auth.service";
         AppComponent,
         LoginComponent,
         ProductListComponent,
+        MenuComponent,
     ],
     imports: [
         BrowserModule,
