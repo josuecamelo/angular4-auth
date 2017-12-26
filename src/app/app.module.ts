@@ -32,11 +32,11 @@ import { LogoutComponent } from './logout/logout.component';
     providers: [
         LocalStorageService,
         JwtTokenService,
-        {
+        /*{
             provide: HTTP_INTERCEPTORS,
             useClass: MyHttpInterceptor,
             multi: true
-        },
+        },*/
         AuthGuardRouterService,
         AuthService
     ],

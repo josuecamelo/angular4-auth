@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import {AuthService} from "./services/auth.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import {HttpClient} from "@angular/common/http";
+import {LocalStorageService} from "./services/local-storage.service";
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
@@ -14,7 +15,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
     http:HttpClient;
 
     constructor(private injector: Injector,
-                private jwtToken: JwtTokenService) {
+                private jwtToken: JwtTokenService, private localStorage: LocalStorageService) {
 
     }
 
@@ -41,8 +42,6 @@ export class MyHttpInterceptor implements HttpInterceptor {
         //injetando o Auth Service para Verificar se a Pessoa está logada
         this.auth = this.injector.get(AuthService); // get it here within intercept
 
-
-
         if(this.auth.check){
             this.authReq = req.clone({
                 headers: req.headers
@@ -52,6 +51,31 @@ export class MyHttpInterceptor implements HttpInterceptor {
         }else{
             this.authReq = req.clone();
         }
+
+        //let strData = this.localStorage.get('ttl_date');
+        ///let strHora = this.localStorage.get('ttl_hour');
+        //let partesHora = strHora.split(':');
+        //let partesData = strData.split("-");
+        //let data = new Date(partesData[0], partesData[1] - 1, partesData[2], partesHora[0], partesHora[1], partesHora[2]);
+
+
+        //if(strData == null || strData == ''){
+            //if (new Date() >= data){
+                //this.localStorage.set('ttl_date', '');
+                //console.log('atualizar token');
+                //this.auth.atualizarToken();
+                //teste com expiração de token
+                /* let time = new Date();
+                 let outraData = new Date();
+                 outraData.setMinutes(time.getMinutes() + 1);*/
+                //console.log(time);
+                //console.log(outraData);
+
+                //this.localStorage.set('ttl_date', outraData.getFullYear() + '-' + (outraData.getMonth() + 1) + '-' + outraData.getDate());
+                //this.localStorage.set('ttl_hour', outraData.getHours() + ':' + (outraData.getMinutes())+ ':' + (outraData.getSeconds() < 10 ? '0' + outraData.getSeconds() : outraData.getSeconds()));
+                //teste com expiração de token
+            //}
+        //}
 
         return next.handle(this.authReq)
             .catch((error, caught) => {

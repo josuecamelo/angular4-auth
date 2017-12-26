@@ -30,6 +30,17 @@ export class AuthService {
       this.http
         .post('http://localhost:8000/api/login', {email, password})
         .subscribe(data => {
+            //teste com expiração de token
+            /*let time = new Date();
+            let outraData = new Date();
+            outraData.setMinutes(time.getMinutes() + 1);
+            //console.log(time);
+            //console.log(outraData);
+
+            this.localStorage.set('ttl_date', outraData.getFullYear() + '-' + (outraData.getMonth() + 1) + '-' + outraData.getDate());
+            this.localStorage.set('ttl_hour', outraData.getHours() + ':' + (outraData.getMinutes())+ ':' + (outraData.getSeconds() < 10 ? '0' + outraData.getSeconds() : outraData.getSeconds()));
+            //teste com expiração de token*/
+
           this.check = true;
           this.jwtToken.token = data['token'];
           this.getUser();

@@ -81,6 +81,7 @@ export class ProductListComponent implements OnInit {
                 //this.auth.atualizarToken();
                 //this.auth.getHeaderDefault();
                 //location.reload();
+                  console.log('Houve Erro: 401');
               }
             }
         );
