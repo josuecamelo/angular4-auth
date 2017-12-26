@@ -19,12 +19,13 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
+    this.auth.logout();
     setInterval(() => {
       this.percent += 10;
       if (this.percent === 100) {
-        this.jwtToken.token = null;
-        this.auth.check = false;
-        this.localStorage.remove('user');
+        //this.jwtToken.token = null;
+        //this.auth.check = false;
+        //this.localStorage.remove('user');
         this.router.navigate(this.redirectAfterLogout);
       }
     }, 300);

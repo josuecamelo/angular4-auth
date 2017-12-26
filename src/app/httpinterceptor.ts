@@ -55,26 +55,17 @@ export class MyHttpInterceptor implements HttpInterceptor {
         //send the newly created request
         return next.handle(this.authReq)
             .catch((error, caught) => {
-
-                /*if (error.status === 401 || error.status === 403) {
-                    this.auth.atualizarToken();
-
+                if (error.status === 401 || error.status === 403) {
+                    /*this.auth.atualizarToken();
                     this.authReq = req.clone({
                         headers: req.headers
                             .set("Authorization", `Bearer ${this.jwtToken.token}`)
                             .set('Content-Type', 'application/json')
                     });
 
-                    return next.handle(this.authReq);
-                } else {
-                    return Observable.throw(error);
-                }*/
-
-                //solução 1 - enviar para tela de login novamente
-                if (error.status === 401 || error.status === 403) {
+                    return next.handle(this.authReq);*/
                     this.auth.logout();
-                }else{
-                    console.log('1');
+                } else {
                     return Observable.throw(error);
                 }
             }) as any;

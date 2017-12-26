@@ -36,6 +36,12 @@ export class AuthService {
         });
   }
 
+  logout(){
+      this.jwtToken.token = null;
+      this.check = false;
+      this.localStorage.remove(USER_KEY);
+  }
+
   private getUser() {
     this.http
         .get('http://localhost:8000/api/user')
