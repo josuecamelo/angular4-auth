@@ -41,6 +41,8 @@ export class MyHttpInterceptor implements HttpInterceptor {
         //injetando o Auth Service para Verificar se a Pessoa está logada
         this.auth = this.injector.get(AuthService); // get it here within intercept
 
+
+
         if(this.auth.check){
             this.authReq = req.clone({
                 headers: req.headers
@@ -53,7 +55,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
         return next.handle(this.authReq)
             .catch((error, caught) => {
-                console.log('oi');
+                //console.log('oi');
                 //if (error.status === 401 || error.status === 403) {
                     /*this.auth.atualizarToken();
                     this.authReq = req.clone({
