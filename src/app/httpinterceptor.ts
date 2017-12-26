@@ -5,13 +5,16 @@ import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/catch';
 import {AuthService} from "./services/auth.service";
 import {JwtTokenService} from "./services/jwt-token.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
     authReq = null;
     auth: AuthService;
+    http:HttpClient;
 
-    constructor(private injector: Injector, private jwtToken: JwtTokenService) {
+    constructor(private injector: Injector,
+                private jwtToken: JwtTokenService) {
 
     }
 
@@ -38,8 +41,6 @@ export class MyHttpInterceptor implements HttpInterceptor {
         //injetando o Auth Service para Verificar se a Pessoa está logada
         this.auth = this.injector.get(AuthService); // get it here within intercept
 
-        console.log("interceptando requisição ... ");
-
         // Clone the request to add the new header.
         if(this.auth.check){
             this.authReq = req.clone({
@@ -51,18 +52,31 @@ export class MyHttpInterceptor implements HttpInterceptor {
             this.authReq = req.clone();
         }
 
-        console.log("Enviando requisição com Novos Headers ...");
         //send the newly created request
         return next.handle(this.authReq)
             .catch((error, caught) => {
-                //intercept the respons error and displace it to the console
-                console.log("Ops Ocorreu um Erro");
-                console.log(error);
-                console.log(error.statusText);
-                console.log(error.status); // --> 404
-                console.log(caught);
-                //return the error to the method that called it
-                return Observable.throw(error);
+
+                /*if (error.status === 401 || error.status === 403) {
+                    this.auth.atualizarToken();
+
+                    this.authReq = req.clone({
+                        headers: req.headers
+                            .set("Authorization", `Bearer ${this.jwtToken.token}`)
+                            .set('Content-Type', 'application/json')
+                    });
+
+                    return next.handle(this.authReq);
+                } else {
+                    return Observable.throw(error);
+                }*/
+
+                //solução 1 - enviar para tela de login novamente
+                if (error.status === 401 || error.status === 403) {
+                    this.auth.logout();
+                }else{
+                    console.log('1');
+                    return Observable.throw(error);
+                }
             }) as any;
     }
 }

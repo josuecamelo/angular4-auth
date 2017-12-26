@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  redirectAfterLogin = ['/products/list'];
+  //redirectAfterLogin = ['/products/list'];
 
   constructor(private http: HttpClient,
               private jwtToken: JwtTokenService,
@@ -27,14 +27,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     //exemplo de uso
-    this.http.post('http://localhost:8000/api/login', this.user).subscribe(data => {
+    /*this.http.post('http://localhost:8000/api/login', this.user).subscribe(data => {
       this.auth.check = true;
       this.jwtToken.token = data['token'];
       this.router.navigate(this.redirectAfterLogin)
-    });
+    });*/
 
-    //this.auth.login(this.user).then(response => {
-      //this.router.navigate(this.redirectAfterLogin)
-    //});
+    this.auth.login(this.user);
   }
 }

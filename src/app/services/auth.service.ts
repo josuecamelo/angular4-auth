@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {JwtTokenService} from "./jwt-token.service";
 import 'rxjs/add/operator/toPromise';
 import {LocalStorageService} from "./local-storage.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 const USER_KEY = 'user';
 @Injectable()
@@ -14,9 +15,11 @@ export class AuthService {
     name: ''
   };
 
+  redirectAfterLogin = ['/products/list'];
+
   constructor(private jwtToken: JwtTokenService,
               private http: HttpClient,
-              private localStorage: LocalStorageService) {
+              private localStorage: LocalStorageService, private router: Router) {
     this.check = this.jwtToken.token ? true : false;
     let userLocalStorage = this.localStorage.getObject(USER_KEY);
     this.user = userLocalStorage ? userLocalStorage : {
@@ -24,17 +27,16 @@ export class AuthService {
         };
   }
 
-  /*login({email, password}) {
-    return this.http
+  login({email, password}) {
+      this.http
         .post('http://localhost:8000/api/login', {email, password})
-        .toPromise()
-        .then(response => {
+        .subscribe(data => {
           this.check = true;
-          this.jwtToken.token = response.json().token;
+          this.jwtToken.token = data['token'];
           this.getUser();
-          return response;
+          this.router.navigate(this.redirectAfterLogin)
         });
-  }*/
+  }*
 
   logout() {
     this.jwtToken.token = null;
@@ -42,13 +44,26 @@ export class AuthService {
     this.localStorage.remove(USER_KEY);
   }
 
-  /*private getUser() {
+  private getUser() {
     this.http
-        .get('http://localhost:8000/api/user', this.requestOptions.merge(new RequestOptions()))
-        .toPromise()
-        .then(response => {
-          this.user = response.json().user;
+        .get('http://localhost:8000/api/user')
+        .subscribe(data => {
+          this.user = data.user;
           this.localStorage.setObject(USER_KEY, this.user);
         });
-  }*/
+  }
+
+  atualizarToken(){
+    this.http.post('http://localhost:8000/api/refresh_token', {}, {headers: this.getHeaderDefault()})
+        .subscribe(data => {
+          this.jwtToken.token = data['token'];
+        });
+  }
+
+  getHeaderDefault(){
+    return new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken.token}`,
+      'Content-Type': 'application/json'
+    });
+  }
 }
