@@ -11,9 +11,7 @@ export class AuthService {
 
   public check: Boolean = false;
 
-  public user = {
-    name: ''
-  };
+  public user:any;
 
   redirectAfterLogin = ['/products/list'];
 
@@ -53,7 +51,7 @@ export class AuthService {
     this.http
         .get('http://localhost:8000/api/user')
         .subscribe(data => {
-          this.user = {name: data.user.name};
+          this.user = data
           this.localStorage.setObject(USER_KEY, this.user);
         });
   }
