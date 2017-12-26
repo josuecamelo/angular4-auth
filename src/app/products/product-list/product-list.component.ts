@@ -75,7 +75,7 @@ export class ProductListComponent implements OnInit {
     this.http
         .get('http://localhost:8000/api/products')
         .subscribe(
-            data => this.products = data
+            data => this.products = data,
             err => {
               if (err.status === 401) {
                 //this.auth.atualizarToken();
