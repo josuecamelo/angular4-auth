@@ -18,13 +18,19 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    let headers = new HttpHeaders({
+    /*let headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken.token}`,
       'Content-Type': 'application/json'
     });
 
     this.http
         .get('http://localhost:8000/api/products', {headers: headers})
+        .subscribe(
+            data => this.products = data
+        );*/
+
+    this.http
+        .get('http://localhost:8000/api/products')
         .subscribe(
             data => this.products = data
         );
