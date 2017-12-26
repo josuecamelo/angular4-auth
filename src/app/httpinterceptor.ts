@@ -66,7 +66,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
                     return next.handle(this.authReq);*/
 
-                    //this.auth.logout();
+                    this.auth.logout();
 
                     //return next.handle(this.authReq);
                 //} else {
