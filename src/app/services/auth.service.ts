@@ -39,16 +39,21 @@ export class AuthService {
   }*
 
   logout() {
+    console.log(this.jwtToken.token);
     this.jwtToken.token = null;
-    this.check = false;
-    this.localStorage.remove(USER_KEY);
+    console.log(this.jwtToken.token);
+
+   /* this.check = false;
+    //this.localStorage.remove(token);
+    this.localStorage.remove(USER_KEY);*/
+    alert('oi');
   }
 
   private getUser() {
     this.http
         .get('http://localhost:8000/api/user')
         .subscribe(data => {
-          this.user = data.user;
+          this.user = {name: data.user.name};
           this.localStorage.setObject(USER_KEY, this.user);
         });
   }

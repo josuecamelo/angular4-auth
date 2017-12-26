@@ -16,12 +16,12 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     this.auth.logout();
-    setInterval(() => {
+    /*setInterval(() => {
       this.percent += 10;
       if (this.percent === 100) {
         this.router.navigate(this.redirectAfterLogout);
       }
-    }, 300);
+    }, 300);*/
   }
 
   ngOnInit() {
