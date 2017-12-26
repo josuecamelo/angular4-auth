@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {JwtTokenService} from "../../services/jwt-token.service";
-import {HttpHeaders} from "@angular/common/http";
-import {RequestOptions} from "http";
-import {RequestOptions} from "http";
 
 @Component({
   selector: 'app-product-list',
@@ -31,12 +28,5 @@ export class ProductListComponent implements OnInit {
         .subscribe(
             data => this.products = data
         );
-
-    /*this.http.get("https://jsonplaceholder.typicode.com/users").subscribe(
-        success => {
-          console.log("Successfully Completed");
-          console.log(success);
-        }
-    );*/
   }
 }
