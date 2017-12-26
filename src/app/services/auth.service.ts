@@ -34,17 +34,6 @@ export class AuthService {
           this.getUser();
           this.router.navigate(this.redirectAfterLogin)
         });
-  }*
-
-  logout() {
-    console.log(this.jwtToken.token);
-    this.jwtToken.token = null;
-    console.log(this.jwtToken.token);
-
-   /* this.check = false;
-    //this.localStorage.remove(token);
-    this.localStorage.remove(USER_KEY);*/
-    alert('oi');
   }
 
   private getUser() {
