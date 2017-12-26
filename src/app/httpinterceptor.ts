@@ -53,6 +53,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
         return next.handle(this.authReq)
             .catch((error, caught) => {
+                console.log('oi');
                 //if (error.status === 401 || error.status === 403) {
                     /*this.auth.atualizarToken();
                     this.authReq = req.clone({
