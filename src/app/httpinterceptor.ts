@@ -41,7 +41,6 @@ export class MyHttpInterceptor implements HttpInterceptor {
         //injetando o Auth Service para Verificar se a Pessoa está logada
         this.auth = this.injector.get(AuthService); // get it here within intercept
 
-        // Clone the request to add the new header.
         if(this.auth.check){
             this.authReq = req.clone({
                 headers: req.headers
@@ -52,10 +51,9 @@ export class MyHttpInterceptor implements HttpInterceptor {
             this.authReq = req.clone();
         }
 
-        //send the newly created request
         return next.handle(this.authReq)
             .catch((error, caught) => {
-                if (error.status === 401 || error.status === 403) {
+                //if (error.status === 401 || error.status === 403) {
                     /*this.auth.atualizarToken();
                     this.authReq = req.clone({
                         headers: req.headers
@@ -64,10 +62,13 @@ export class MyHttpInterceptor implements HttpInterceptor {
                     });
 
                     return next.handle(this.authReq);*/
-                    this.auth.logout();
-                } else {
+
+                    //this.auth.logout();
+
+                    //return next.handle(this.authReq);
+                //} else {
                     return Observable.throw(error);
-                }
+               // }
             }) as any;
     }
 }
