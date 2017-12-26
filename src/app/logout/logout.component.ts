@@ -14,8 +14,8 @@ export class LogoutComponent implements OnInit {
   redirectAfterLogout = ['/login'];
 
   constructor(private auth: AuthService,
-              private jwtToken: JwtTokenService,
-              private router: Router, private localStorage: LocalStorageService) {
+              //private jwtToken: JwtTokenService,
+              private router: Router) {
   }
 
   logout() {
@@ -23,9 +23,7 @@ export class LogoutComponent implements OnInit {
     setInterval(() => {
       this.percent += 10;
       if (this.percent === 100) {
-        //this.jwtToken.token = null;
-        //this.auth.check = false;
-        //this.localStorage.remove('user');
+        this.auth.check = false;
         this.router.navigate(this.redirectAfterLogout);
       }
     }, 300);

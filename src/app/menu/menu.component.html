@@ -28,7 +28,7 @@
         <li class="dropdown" dropdown>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
              dropdownToggle>
-            {{auth.user.user.name}} <span class="caret"></span>
+            {{ auth.user.user ? auth.user.user.name : null}} <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu" role="menu" dropdownMenu>
